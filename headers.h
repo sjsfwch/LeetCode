@@ -29,8 +29,8 @@
 // 17.4.1.2 Headers
 
 // C
-#ifndef HEADER_
-#define HEADER_
+#ifndef _HEADER_
+#define _HEADER_
 
 #include <cctype>
 #include <cerrno>
@@ -59,12 +59,19 @@
 
 // C++
 #include <algorithm>
+#include <array>
+#include <atomic>
 #include <bitset>
+#include <chrono>
 #include <complex>
+#include <condition_variable>
 #include <deque>
 #include <exception>
+#include <forward_list>
 #include <fstream>
 #include <functional>
+#include <future>
+#include <initializer_list>
 #include <iomanip>
 #include <ios>
 #include <iosfwd>
@@ -76,38 +83,31 @@
 #include <locale>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <new>
 #include <numeric>
 #include <ostream>
 #include <queue>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
 #include <set>
 #include <sstream>
 #include <stack>
 #include <stdexcept>
 #include <streambuf>
 #include <string>
-#include <typeinfo>
-#include <utility>
-#include <valarray>
-#include <vector>
-#include <array>
-#include <atomic>
-#include <chrono>
-#include <condition_variable>
-#include <forward_list>
-#include <future>
-#include <initializer_list>
-#include <mutex>
-#include <random>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
 #include <system_error>
 #include <thread>
 #include <tuple>
-#include <typeindex>
 #include <type_traits>
+#include <typeindex>
+#include <typeinfo>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
+#include <valarray>
+#include <vector>
 using namespace std;
 #endif
