@@ -8,11 +8,29 @@
 class Solution {
    public:
     int largestRectangleArea(vector<int>& heights) {
-        int m = heights.size();
-        if (heights.empty()) return 0;
-        int lo = 0, hi = 0, res = 0, h = heights[0];
-        int dp[m] = {0};
-        while (hi < m) {
+        int n = heights.size();
+        vector<int> left(n, 0), right(n, n);
+        stack<int> tmp;
+        // cal left
+        for (int i = 0; i < n; i++) {
+            while (!tmp.empty() && heights[tmp.top()] >= heights[i]) {
+                tmp.pop();
+            }
+            left[i] = tmp.empty() ? -1 : tmp.top();
+            tmp.push(i);
+        }
+        while (!tmp.empty()) tmp.pop();
+        // cal right
+        for (int i = n - 1; i >= 0; i--) {
+            while (!tmp.empty() && heights[tmp.top()] >= heights[i]) {
+                tmp.pop();
+            }
+            right[i] = tmp.empty() ? n : tmp.top();
+            tmp.push(i);
+        }
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            res = max(res, (right[i] - left[i] - 1) * heights[i]);
         }
         return res;
     }
