@@ -6,33 +6,30 @@
 #include "headers.h"
 using namespace std;
 // @lc code=start
-#define max(a,b) (((a)>(b))?(a):(b))
 class Solution {
-public:
+   public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> flag(128,-1);
-        int maxLen=0,start=0;
-        for(int i=0;i<s.size();i++){
-            // 命中
-            if (flag[s[i]]>=0){
-                maxLen=max(maxLen,i-start);
-                if (flag[s[i]]>=start)
-                {start=start+1;
-                if (start<=flag[s[i]]) start=flag[s[i]]+1;
-                }
+        // vector<int> index(128, -1);
+        int index[128];
+        memset(index, -1, 128 * sizeof(int));
+        int start = 0, maxLen = 0;
+        for (int i = 0; i < s.size(); ++i) {
+            if (index[s[i]] >= start) {
+                maxLen = max(maxLen, i - start);
+                start = index[s[i]] + 1;
             }
-            flag[s[i]]=i;
+            index[s[i]] = i;
         }
-        maxLen=max(s.size()-start,maxLen);
+        maxLen = max(maxLen, int(s.size()) - start);
+
         return maxLen;
     }
 };
 // @lc code=end
 
-int main(){
+int main() {
     Solution t;
-    string input="ohvhjdml";
-   t.lengthOfLongestSubstring(input);
-   return 0;
-
+    string input = "a";
+    t.lengthOfLongestSubstring(input);
+    return 0;
 }
