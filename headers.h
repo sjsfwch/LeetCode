@@ -32,9 +32,12 @@
 #ifndef _HEADER_
 #define _HEADER_
 
+#include <ccomplex>
 #include <cctype>
 #include <cerrno>
+#include <cfenv>
 #include <cfloat>
+#include <cinttypes>
 #include <ciso646>
 #include <climits>
 #include <clocale>
@@ -42,18 +45,14 @@
 #include <csetjmp>
 #include <csignal>
 #include <cstdarg>
+#include <cstdbool>
 #include <cstddef>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <ctime>
-
-#include <ccomplex>
-#include <cfenv>
-#include <cinttypes>
-#include <cstdbool>
-#include <cstdint>
 #include <ctgmath>
+#include <ctime>
 #include <cwchar>
 #include <cwctype>
 
@@ -110,4 +109,13 @@
 #include <valarray>
 #include <vector>
 using namespace std;
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right)
+        : val(x), left(left), right(right) {}
+};
 #endif
