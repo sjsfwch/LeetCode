@@ -20,8 +20,22 @@
 class Solution {
    public:
     int maxPathSum(TreeNode* root) {
-        if(!root) return 0;
-        
+        if (!root) return 0;
+        int res = INT32_MIN;
+        getMax(root, res);
+        return res;
+    }
+    int getMax(TreeNode* root, int& maxSum) {
+        if (!root) return 0;
+        int left, right, ret = 0;
+        left = getMax(root->left, maxSum);
+        right = getMax(root->right, maxSum);
+        maxSum = max(maxSum, root->val + left + right);
+        ret = max(left + root->val, right + root->val);
+        ret = max(ret, root->val);
+        maxSum = max(maxSum, ret);
+        // printf("%d,%d,%d\n", left, right, maxSum);
+        return ret;
     }
 };
 // @lc code=end

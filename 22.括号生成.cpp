@@ -4,31 +4,37 @@
  * [22] 括号生成
  */
 #include "headers.h"
-using namespace std;
+
 // @lc code=start
 class Solution {
-public:
-    vector<string> res;
-    string current="";
+   public:
     vector<string> generateParenthesis(int n) {
-        DFS(0,0,n);
+        vector<string> res;
+        string cur = "";
+        DFS(0, 0, n, cur, res);
         return res;
     }
-    void DFS(int left,int right,int n){
-        if(right>left) return;
-        if(left>n) return;
-        if (left==right&&left==n) {res.push_back(current);return;}
-        current.push_back('(');
-        DFS(left+1,right,n);
-        current.pop_back();
-        current.push_back(')');
-        DFS(left,right+1,n);
-        current.pop_back();
+    void DFS(int left, int right, int n, string cur, vector<string>& res) {
+        if (left == right && right == n) {
+            res.push_back(cur);
+            return;
+        }
+        if (left < right) return;
+        if (left < n) {
+            // cur += "(";
+            DFS(left + 1, right, n, cur + '(', res);
+        }
+        // cur.pop_back();
+        if (right < left && left <= n) {
+            // cur += ")";
+            DFS(left, right + 1, n, cur + ')', res);
+        }
+        // cur.pop_back();
     }
 };
 // @lc code=end
 
-int main(){
+int main() {
     Solution t;
     t.generateParenthesis(1);
     return 0;
