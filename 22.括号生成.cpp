@@ -24,12 +24,11 @@ class Solution {
             // cur += "(";
             DFS(left + 1, right, n, cur + '(', res);
         }
-        // cur.pop_back();
+
         if (right < left && left <= n) {
             // cur += ")";
             DFS(left, right + 1, n, cur + ')', res);
         }
-        // cur.pop_back();
     }
 };
 // @lc code=end
