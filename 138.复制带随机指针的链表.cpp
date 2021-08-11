@@ -21,37 +21,23 @@ class Node {
 class Solution {
    public:
     Node* copyRandomList(Node* head) {
-        unordered_map<Node*, Node*> tmp;
+        unordered_map<Node*, Node*> old2new;
         auto p = head;
         while (p) {
-            Node* cur = nullptr;
-            if (tmp.find(p) != tmp.end())
-                cur = tmp[p];
-            else
-                cur = new Node(p->val);
-            tmp[p] = cur;
-            auto nextp = p->next, randomp = p->random;
-            if (nextp) {
-                if (tmp.find(nextp) != tmp.end())
-                    cur->next = tmp[nextp];
-                else {
-                    auto n = new Node(nextp->val);
-                    tmp[nextp] = n;
-                    cur->next = tmp[nextp];
-                }
-            } else
-                cur->next = NULL;
-            if (randomp) {
-                if (tmp.find(randomp) == tmp.end()) {
-                    auto n = new Node(randomp->val);
-                    tmp[randomp] = n;
-                }
-                cur->random = tmp[randomp];
-            } else
-                cur->random = NULL;
+            if (old2new.find(p) == old2new.end()) old2new[p] = new Node(p->val);
+            if (p->next) {
+                if (old2new.find(p->next) == old2new.end())
+                    old2new[p->next] = new Node(p->next->val);
+                old2new[p]->next = old2new[p->next];
+            }
+            if (p->random) {
+                if (old2new.find(p->random) == old2new.end())
+                    old2new[p->random] = new Node(p->random->val);
+                old2new[p]->random = old2new[p->random];
+            }
             p = p->next;
         }
-        return tmp[head];
+        return old2new[head];
     }
 };
 // @lc code=end
