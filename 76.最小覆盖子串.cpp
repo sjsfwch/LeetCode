@@ -8,8 +8,7 @@
 class Solution {
    public:
     string minWindow(string s, string t) {
-        if (s.size() < t.size())
-            return "";
+        if (s.size() < t.size()) return "";
         unordered_map<char, int> need;
         for (auto c : t) {
             if (need.find(c) == need.end())
@@ -22,12 +21,10 @@ class Solution {
         while (j < s.size()) {
             // 没彻底包含t
             if (!flag) {
-                if (need.find(s[j]) != need.end())
-                    need[s[j]]--;
+                if (need.find(s[j]) != need.end()) need[s[j]]--;
                 j++;
             } else {
-                if (need.find(s[i]) != need.end())
-                    need[s[i]]++;
+                if (need.find(s[i]) != need.end()) need[s[i]]++;
                 i++;
             }
             flag = check_satisfy(need);
@@ -45,18 +42,15 @@ class Solution {
                 minj = j;
                 mini = i;
             }
-            if (need.find(s[i]) != need.end())
-                need[s[i]]++;
+            if (need.find(s[i]) != need.end()) need[s[i]]++;
             i++;
         }
-        if (mini == -1 || minj == s.size() + 1)
-            return "";
+        if (mini == -1 || minj == s.size() + 1) return "";
         return s.substr(mini, minj - mini);
     }
     bool check_satisfy(unordered_map<char, int>& need) {
         for (auto it : need) {
-            if (it.second > 0)
-                return false;
+            if (it.second > 0) return false;
         }
         return true;
     }
