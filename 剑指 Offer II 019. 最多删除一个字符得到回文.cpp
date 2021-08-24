@@ -7,7 +7,7 @@ class Solution {
         while (lo < hi) {
             if (s[lo] != s[hi])
                 return isPalindrome(s, lo + 1, hi) ||
-                       isPalindrome(s, lo, hi + 1);
+                       isPalindrome(s, lo, hi - 1);
             lo++;
             hi--;
         }
