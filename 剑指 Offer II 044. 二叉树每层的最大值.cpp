@@ -3,9 +3,10 @@
 class Solution {
    public:
     vector<int> largestValues(TreeNode* root) {
+        vector<int> res;
+        if (!root) return res;
         queue<pair<int, TreeNode*>> tmp;
         tmp.push(make_pair(0, root));
-        vector<int> res;
         int cur = -1;
         while (!tmp.empty()) {
             auto p = tmp.front();
@@ -19,5 +20,6 @@ class Solution {
             if (p.second->left) tmp.push(make_pair(cur + 1, p.second->left));
             if (p.second->right) tmp.push(make_pair(cur + 1, p.second->right));
         }
+        return res;
     }
 };

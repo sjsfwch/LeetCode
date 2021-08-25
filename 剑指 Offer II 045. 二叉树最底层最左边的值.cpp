@@ -6,6 +6,7 @@ class Solution {
         queue<pair<int, TreeNode*>> tmp;
         auto res = root;
         int cur = -1;
+        tmp.push(make_pair(0, root));
         while (!tmp.empty()) {
             auto p = tmp.front();
             tmp.pop();
