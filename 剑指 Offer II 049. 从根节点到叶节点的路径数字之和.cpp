@@ -8,8 +8,9 @@ class Solution {
         return sum;
     }
     void dfs(TreeNode* root, int base, int& sum) {
-        if (root == nullptr) {
-            sum += base / 10;
+        if (root == nullptr) return;
+        if((!root->left)&&(!root->right)){
+            sum+=base+root->val;
             return;
         }
         base += root->val;
