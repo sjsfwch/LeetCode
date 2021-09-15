@@ -27,6 +27,7 @@ class Solution {
             p = p->next;
             count++;
         }
+        auto tail = p;
         while (p && count <= right) {
             auto next = p->next;
             p->next = pre_p->next;
@@ -34,6 +35,7 @@ class Solution {
             count++;
             p = next;
         }
+        tail->next = p;
         return pHead->next;
     }
 };
