@@ -18,7 +18,23 @@
 class Solution {
    public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        auto pHead = new ListNode();
+        if (left == right) return head;
+        auto pHead = new ListNode(-1, head);
+        auto pre_p = pHead, p = head;
+        int count = 1;
+        while (p && count < left) {
+            pre_p = p;
+            p = p->next;
+            count++;
+        }
+        while (p && count <= right) {
+            auto next = p->next;
+            p->next = pre_p->next;
+            pre_p->next = p;
+            count++;
+            p = next;
+        }
+        return pHead->next;
     }
 };
 // @lc code=end
