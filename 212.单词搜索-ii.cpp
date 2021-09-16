@@ -37,7 +37,10 @@ class Solution {
                 if (root->next[board[i][j] - 'a']) {
                     string s = "";
                     s += board[i][j];
-                    dfs(board, i, j, root->next[board[i][j]], s, tmpres);
+                    char next = board[i][j];
+                    board[i][j] = '#';
+                    dfs(board, i, j, root->next[next - 'a'], s, tmpres);
+                    board[i][j] = next;
                 }
             }
         }
